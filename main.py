@@ -1,7 +1,4 @@
 depenses = []
-stock={
-    'vetement':3000,'transport':2000,'alimentation':1000
-}
 
 def afficher_menu():
     print("\n --Gestion de Depense--")
@@ -44,7 +41,9 @@ def afficher_depenses(depenses):
     if not depenses:
         print("Aucune dépense enregistrée.")
         return
+    print("|======================================|")
     print("\n----- Liste de toutes les dépenses : -----")
+    print("|======================================|")
     total = 0
     categories = {}
     for i, depense in enumerate(depenses,1):
@@ -58,27 +57,33 @@ def afficher_depenses(depenses):
             if  categorie not in categories:
                 categories[ categorie] = 0
             categories[ categorie] += prix_categorie
-            print("===========================================")
+    print("|======================================|")
+        
     
     print(f"\nTotal des dépenses : {total} Fcf")
-    
+    print("|======================================|")
     if categories:
         print("\n-----Dépenses par catégorie : -----")
         for  categorie, somme in categories.items():
             print(f"- { categorie} : {somme} Fcf")
+        print("|======================================|")
+
 
 
 # Boucle principale
 while True:
     afficher_menu()
     while True:
-        try:
-            choix = int(input("Choisissez une option entre (1-3) : "))
+        # try:
+        print("|======================================|")
+        choix = int(input("Choisissez une option entre (1-3) : "))
+        if choix >0 and choix < 4:
             if 1 <= choix <= 3:
                 break
             else:
                 print("Choix invalide, veuillez choisir entre 1 et 3.")
-        except ValueError:
+        else:
+        # except ValueError:
             print("Veuillez entrer un nombre valide.")
 
     if choix == 1:
