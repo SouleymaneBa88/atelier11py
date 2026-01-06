@@ -4,47 +4,24 @@ stock={
 }
 
 def afficher_menu():
-    print("\n --Gestion de depense--")
-    # print("1. Ajouter une description ")
+    print("\n --Gestion de Depense--")
     print("1. Ajouter une dépense par catégorie")
     print("2. Afficher les dépenses")
     print("3. Quitter")
-
-
-# def message(depenses):
-#     while True:
-#         description = str(input("Décris tes dépenses : "))
-#         if description.isalpha() :
-#             print("cool")
-#             break
-#         else:
-#             print("Veuillez une description correct de votre depense")
-
-    # while True:
-    #     montant_str = input("Montant : ")
-    #     if montant_str.replace('.', '', 1).isdigit():
-    #         montant = float(montant_str)
-    #         if montant >= 0:
-    #             print("Montant bien saisi")
-    #             break
-    #         else:
-    #             print("Montant incorrect, veuillez resaisir !")
-    #     else:
-    # depenses.append({"description": description})
-    # print("Dépense bien ajoutée")
 
 
 def add_categorie(depenses):
     for i in range(1, 4):
         while True:
             categorie_input = (input(f"Categorie du produit {i} : "))
-            if categorie_input.strip():
-                break
-            else:
-                print("veuillez bien saisir.")
+            if categorie_input.replace(' ','').isalpha():
+                if categorie_input:
+                    break
+                else:
+                    print("veuillez bien saisir.")
         while True:
             prix_categorie = input(f"Prix (en FcF)  : ")
-            if prix_categorie.replace('.', '', 1).isdigit() and prix_categorie.count('.') <= 1:
+            if prix_categorie.replace('.', '', 1).isdigit() and prix_categorie.count('.') <= 1 :
                 prix_categorie = float(prix_categorie)
                 if prix_categorie >= 0:
                     break
@@ -54,8 +31,7 @@ def add_categorie(depenses):
                 print("Prix invalide, veuillez entrer un nombre valide.") 
         while True:
             description = str(input("Décris le : "))
-            if description.strip():
-    
+            if description.replace(' ','').isalpha():
                 break
             else:
                 print("Veuillez une description correct de votre depense")
@@ -98,7 +74,7 @@ while True:
     while True:
         try:
             choix = int(input("Choisissez une option entre (1-3) : "))
-            if 1 <= choix <= 4:
+            if 1 <= choix <= 3:
                 break
             else:
                 print("Choix invalide, veuillez choisir entre 1 et 3.")
