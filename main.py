@@ -11,7 +11,7 @@ def afficher_menu():
 def message(depenses):
     while True:
         description = str(input("Décris tes dépenses : "))
-        if description.isalpha():
+        if description.isalpha() and description.isnumeric():
             print("cool")
             break
         else:
@@ -31,7 +31,7 @@ def message(depenses):
     print("Dépense bien ajoutée")
 
 
-def categorie(depenses):
+def add_categorie(depenses):
     for i in range(1, 4):
         while True:
             categorie_input = str(input(f"Type de produit {i} : "))
@@ -61,24 +61,24 @@ def afficher_depenses(depenses):
     print("\nListe de toutes les dépenses :")
     total = 0
     categories = {}
-    for i, dep in enumerate(depenses, 1):
-        prix_categorie = dep.get("montant", 0)
+    for i, dep in enumerate(depenses,1):
+        prix_categorie = dep.get("montant")
         total += prix_categorie
         if "description" in dep:
             print(f"{i}. {dep['description']} : {prix_categorie} Fcf")
         elif "categorie" in dep:
-            cate = dep["categorie"]
-            print(f"{i}. Catégorie {cate} : {prix_categorie} Fcf")
-            if cate not in categories:
-                categories[cate] = 0
-            categories[cate] += prix_categorie
+            categorie = dep["categorie"]
+            print(f"{i}. Catégorie { categorie} : {prix_categorie} Fcf")
+            if  categorie not in categories:
+                categories[ categorie] = 0
+            categories[ categorie] += prix_categorie
     
     print(f"\nTotal des dépenses : {total} Fcf")
     
     if categories:
         print("\nDépenses par catégorie :")
-        for cate, somme in categories.items():
-            print(f"- {cate} : {somme} Fcf")
+        for  categorie, somme in categories.items():
+            print(f"- { categorie} : {somme} Fcf")
 
 
 # Boucle principale
@@ -96,7 +96,7 @@ while True:
     if choix == 1:
         message(depenses)
     elif choix == 2:
-        categorie(depenses)
+        add_categorie(depenses)
     elif choix == 3:
         afficher_depenses(depenses)
     elif choix == 4:
