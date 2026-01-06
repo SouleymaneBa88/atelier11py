@@ -8,9 +8,9 @@ def afficher_menu():
 
 
 def add_categorie(depenses):
-    for i in range(1, 4):
+    # for i in range(1, 4):
         while True:
-            categorie_input = (input(f"Categorie du produit {i} : "))
+            categorie_input = (input(f"Categorie du produit  : "))
             if categorie_input.replace(' ','').isalpha():
                 if categorie_input:
                     break
@@ -32,9 +32,12 @@ def add_categorie(depenses):
                 break
             else:
                 print("Veuillez une description correct de votre depense")
-
-        depenses.append({"categorie": categorie_input, "montant": prix_categorie})
-    print("Dépenses par catégorie ajoutées")
+        
+        listes_depenses={"categorie": categorie_input, 
+                         "montant": prix_categorie,
+                         "description":description}
+        depenses.append(listes_depenses)
+    # print("Dépenses par catégorie ajoutées")
 
 
 def afficher_depenses(depenses):
